@@ -1,0 +1,15 @@
+version: '3'
+services:
+  search-volume-analyser-service:
+    image: sellics/search-volume-analyser-service:1.0.0
+    container_name: search-volume-analyser-service
+    ports:
+      - 8080:8080
+    environment:
+      - 'JAVA_OPTS= -Dlogging.config=classpath:logback-local.xml -Dspring.profiles.active=local -Djava.util.concurrent.ForkJoinPool.common.parallelism=5'
+    networks:
+      - local_default
+
+networks:
+  local_default:
+    external: true
