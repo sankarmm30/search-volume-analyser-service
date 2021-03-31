@@ -18,7 +18,7 @@ import java.util.Date;
 /**
  * @author Sankar M <sankar.mm30@gmail.com>
  */
- @RestController
+@RestController
 @ControllerAdvice
 public class GenericExceptionHandlerAdvice extends ResponseEntityExceptionHandler {
 

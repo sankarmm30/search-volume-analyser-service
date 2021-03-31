@@ -12,6 +12,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
+import org.springframework.cache.CacheManager;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -38,9 +39,11 @@ public class AmazonApiClientServiceImplTest {
     @Mock
     private ResponseEntity<String> responseEntityMock;
     private ObjectMapper objectMapper = new ObjectMapper();
+    @Mock
+    private CacheManager cacheManager;
 
     @InjectMocks
-    private ApiClientService amazonApiClientService = new AmazonApiClientServiceImpl(restTemplateMock, objectMapper);
+    private ApiClientService amazonApiClientService = new AmazonApiClientServiceImpl(restTemplateMock, objectMapper, cacheManager);
 
     @Before
     public void init() {

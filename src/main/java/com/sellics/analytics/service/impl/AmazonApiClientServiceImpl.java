@@ -6,16 +6,21 @@ import com.sellics.analytics.exception.GenericServerRuntimeException;
 import com.sellics.analytics.service.ApiClientService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.cache.Cache;
+import org.springframework.cache.CacheManager;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * @author Sankar M <sankar.mm30@gmail.com>
@@ -26,15 +31,19 @@ public class AmazonApiClientServiceImpl implements ApiClientService {
     private static final Logger LOG = LoggerFactory.getLogger(AmazonApiClientServiceImpl.class);
 
     private static final String CACHE_CONTROL = "private, no-store, max-age=0";
+    private static final String CACHE_GET_RESPONSE = "callAndGetResponse";
     private static final Integer CACHE_EXPIRES = 0;
 
     private RestTemplate restTemplate;
     private ObjectMapper objectMapper;
+    private CacheManager cacheManager;
 
-    public AmazonApiClientServiceImpl(RestTemplate restTemplate, ObjectMapper objectMapper) {
+    public AmazonApiClientServiceImpl(RestTemplate restTemplate, ObjectMapper objectMapper,
+                                      CacheManager cacheManager) {
 
         this.restTemplate = restTemplate;
         this.objectMapper = objectMapper;
+        this.cacheManager = cacheManager;
     }
 
     /**
@@ -44,6 +53,7 @@ public class AmazonApiClientServiceImpl implements ApiClientService {
      * @return
      */
     @Override
+    @Cacheable(value=CACHE_GET_RESPONSE, key="#keyword")
     public List<String> callAndGetResponse(final String keyword) {
 
 
@@ -84,5 +94,11 @@ public class AmazonApiClientServiceImpl implements ApiClientService {
         httpHeaders.setCacheControl(CACHE_CONTROL);
 
         return new HttpEntity<>(httpHeaders);
+    }
+
+    @Scheduled(fixedRate = 60000)
+    public void clearCache() {
+
+        Optional.ofNullable(cacheManager.getCache(CACHE_GET_RESPONSE)).ifPresent(Cache::clear);
     }
 }
