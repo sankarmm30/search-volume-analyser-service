@@ -6,10 +6,8 @@ import com.sellics.analytics.service.strategy.SearchVolumeStrategyService;
 import com.sellics.analytics.util.CommonUtil;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 /**
  * @author Sankar M <sankar.mm30@gmail.com>
