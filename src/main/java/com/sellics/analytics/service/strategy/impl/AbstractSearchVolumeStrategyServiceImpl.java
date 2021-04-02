@@ -38,11 +38,11 @@ public abstract class AbstractSearchVolumeStrategyServiceImpl implements SearchV
                         .limit(this.getTotalKeywordExpected())
                         .collect(Collectors.toSet());
 
-        LOG.info("Total unique keywords received: {}", uniqueKeywords.size());
+        LOG.debug("Total unique keywords received: {}", uniqueKeywords.size());
 
         int score = Math.round(uniqueKeywords.size() * this.getWeightage() / this.getTotalKeywordExpected());
 
-        LOG.info("Score calculated: {}", score);
+        LOG.debug("Score calculated: {}", score);
 
         return score > 0 ? score : uniqueKeywords.size();
     }

@@ -59,6 +59,8 @@ public class AmazonApiClientServiceImpl implements ApiClientService {
 
         try{
 
+            LOG.debug("Calling auto complete api for keyword: {} ", keyword);
+
             final ResponseEntity<String> responseEntity =
                     this.restTemplate.exchange(GlobalConstant.AMAZON_AUTO_COMPLETE_API_URL + keyword,
                             HttpMethod.GET, buildHttpRequest(), String.class);
