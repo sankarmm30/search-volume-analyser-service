@@ -24,7 +24,7 @@ public class CommonUtil {
     public static List<String> getAlphabets() {
 
         return IntStream.rangeClosed('a', 'z')
-                .mapToObj(var -> (char) var + "")
+                .mapToObj(var -> String.valueOf((char) var))
                 .collect(Collectors.toList());
     }
 
