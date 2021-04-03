@@ -22,8 +22,8 @@ import java.util.stream.Collectors;
 public class SearchVolumeStrategyPrefixServiceImpl extends AbstractSearchVolumeStrategyServiceImpl
         implements SearchVolumeStrategyService {
 
-    private static final Integer STRATEGY_THREE_WEIGHTAGE = 10;
-    private static final Integer STRATEGY_THREE_TOTAL_KEYWORDS_EXPECTED = 35;
+    private static final Integer STRATEGY_PREFIX_WEIGHTAGE = 10;
+    private static final Integer STRATEGY_PREFIX_TOTAL_KEYWORDS_EXPECTED = 35;
 
     public SearchVolumeStrategyPrefixServiceImpl(ApiClientService amazonApiClientService) {
 
@@ -33,13 +33,13 @@ public class SearchVolumeStrategyPrefixServiceImpl extends AbstractSearchVolumeS
     @Override
     protected Integer getTotalKeywordExpected() {
 
-        return STRATEGY_THREE_TOTAL_KEYWORDS_EXPECTED;
+        return STRATEGY_PREFIX_TOTAL_KEYWORDS_EXPECTED;
     }
 
     @Override
     protected Integer getWeightage() {
 
-        return STRATEGY_THREE_WEIGHTAGE;
+        return STRATEGY_PREFIX_WEIGHTAGE;
     }
 
     @Override

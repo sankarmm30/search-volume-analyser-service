@@ -22,8 +22,8 @@ import java.util.List;
 public class SearchVolumeStrategyFirstLetterServiceImpl extends AbstractSearchVolumeStrategyServiceImpl
         implements SearchVolumeStrategyService {
 
-    private static final Integer STRATEGY_ONE_TOTAL_KEYWORDS_EXPECTED = 10;
-    private static final Integer STRATEGY_ONE_TOTAL_WEIGHTAGE = 10;
+    private static final Integer STRATEGY_FL_TOTAL_KEYWORDS_EXPECTED = 10;
+    private static final Integer STRATEGY_FL_TOTAL_WEIGHTAGE = 10;
 
     public SearchVolumeStrategyFirstLetterServiceImpl(ApiClientService amazonApiClientService) {
 
@@ -33,13 +33,13 @@ public class SearchVolumeStrategyFirstLetterServiceImpl extends AbstractSearchVo
     @Override
     protected Integer getTotalKeywordExpected() {
 
-        return STRATEGY_ONE_TOTAL_KEYWORDS_EXPECTED;
+        return STRATEGY_FL_TOTAL_KEYWORDS_EXPECTED;
     }
 
     @Override
     protected Integer getWeightage() {
 
-        return STRATEGY_ONE_TOTAL_WEIGHTAGE;
+        return STRATEGY_FL_TOTAL_WEIGHTAGE;
     }
 
     @Override

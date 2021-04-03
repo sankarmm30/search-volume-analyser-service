@@ -6,7 +6,6 @@ import com.sellics.analytics.exception.GenericServerRuntimeException;
 import com.sellics.analytics.service.ApiClientService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.cache.Cache;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpEntity;
@@ -101,6 +100,12 @@ public class AmazonApiClientServiceImpl implements ApiClientService {
     @Scheduled(fixedRate = 60000)
     public void clearCache() {
 
-        Optional.ofNullable(cacheManager.getCache(CACHE_GET_RESPONSE)).ifPresent(Cache::clear);
+        Optional.ofNullable(cacheManager.getCache(CACHE_GET_RESPONSE)).ifPresent(cache -> {
+
+            if(cache.getName().equalsIgnoreCase(CACHE_GET_RESPONSE)) {
+
+                cache.clear();
+            }
+        });
     }
 }

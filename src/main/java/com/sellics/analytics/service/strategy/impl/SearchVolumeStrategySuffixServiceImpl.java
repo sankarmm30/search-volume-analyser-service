@@ -20,8 +20,8 @@ import java.util.stream.Collectors;
 public class SearchVolumeStrategySuffixServiceImpl extends AbstractSearchVolumeStrategyServiceImpl
         implements SearchVolumeStrategyService {
 
-    private static final Integer STRATEGY_TWO_TOTAL_KEYWORDS_EXPECTED = 350;
-    private static final Integer STRATEGY_TWO_WEIGHTAGE = 80;
+    private static final Integer STRATEGY_SUFFIX_TOTAL_KEYWORDS_EXPECTED = 350;
+    private static final Integer STRATEGY_SUFFIX_WEIGHTAGE = 80;
 
     public SearchVolumeStrategySuffixServiceImpl(ApiClientService amazonApiClientService) {
 
@@ -31,13 +31,13 @@ public class SearchVolumeStrategySuffixServiceImpl extends AbstractSearchVolumeS
     @Override
     protected Integer getTotalKeywordExpected() {
 
-        return STRATEGY_TWO_TOTAL_KEYWORDS_EXPECTED;
+        return STRATEGY_SUFFIX_TOTAL_KEYWORDS_EXPECTED;
     }
 
     @Override
     protected Integer getWeightage() {
 
-        return STRATEGY_TWO_WEIGHTAGE;
+        return STRATEGY_SUFFIX_WEIGHTAGE;
     }
 
     @Override

@@ -1,11 +1,9 @@
 package com.sellics.analytics.util;
 
 
-import org.springframework.util.StringUtils;
+import org.springframework.cache.annotation.Cacheable;
 
-import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -37,6 +35,7 @@ public class CommonUtil {
                 .collect(Collectors.toList());
     }
 
+    @Cacheable(value = "getSearchCharList")
     public static List<String> getSearchCharList() {
 
         List<String> searchKeywordList = CommonUtil.getAlphabets();
