@@ -76,6 +76,6 @@ public class AmazonSearchVolumeAnalyserController implements SearchVolumeAnalyse
                         .message(HttpStatus.REQUEST_TIMEOUT.getReasonPhrase())
                         .path(GET_ESTIMATE_PATH)
                         .build()
-                , HttpStatus.NOT_FOUND);
+                , HttpStatus.REQUEST_TIMEOUT);
     }
 }
